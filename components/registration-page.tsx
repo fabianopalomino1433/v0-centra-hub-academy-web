@@ -3,87 +3,176 @@
 import { useState } from "react"
 import { RegistrationForm } from "./registration-form"
 import { ConfirmationModal } from "./confirmation-modal"
+import { RecentRegistrations } from "./recent-registrations"
+import { AnimatedBackground } from "./animated-background"
+import { ScrollyHeader } from "./scrolly-header"
+import { ProgramsSection } from "./programs-section"
+import { BookOffer } from "./book-offer"
+import { TestimonialsSection } from "./testimonials-section"
+import { SiteFooter } from "./site-footer"
+import { motion } from "framer-motion"
 import Image from "next/image"
+import { Phone, MapPin, MonitorPlay, Gift } from "lucide-react"
 
-export function RegistrationPage() {
+export function RegistrationPage({ initialContent }: { initialContent?: any }) {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [submittedData, setSubmittedData] = useState<any>(null)
+  
+  // Use content or fallback to defaults (although defaults are now in JSON, this is safety)
+  const content = initialContent || {}
+  const hero = content.hero || {
+    badge: "INSCRIPCIONES ABIERTAS 2025",
+    titleLine1: "Descubre tu voz.",
+    titleLine2: "Lidera el futuro.",
+    description: "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial."
+  }
 
   const handleSubmitSuccess = (data: any) => {
     setSubmittedData(data)
     setShowConfirmation(true)
   }
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }
+
+  const stagger = {
+    visible: { transition: { staggerChildren: 0.1 } },
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/80 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12">
-              <Image
-                src="/images/480327209-8927883004000304-8534569882409152595-n.jpg"
-                alt="CENTRAJUV Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-[#1a2d5c]">CENTRAJUV</h1>
-              <p className="text-sm text-slate-600">Academia de Oratoria y Liderazgo</p>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen relative overflow-hidden font-sans bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+      <AnimatedBackground />
+
+      {/* Scrollytelling Header */}
+      <ScrollyHeader />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Section - Info */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1a2d5c] leading-tight mb-6">
-                Reserva tu <span className="text-[#f4a835]">inscripción</span>
-              </h2>
-              <p className="text-xl text-slate-600 leading-relaxed mb-6">
-                Estás a un paso de transformar tu comunicación. Completa el formulario y un asesor senior se contactará
-                contigo.
-              </p>
-            </div>
-
-            {/* Contact Info Card */}
-            <div className="bg-gradient-to-br from-[#1a2d5c] to-[#2d4475] rounded-2xl p-8 text-white space-y-6">
-              <div>
-                <h3 className="text-sm font-semibold text-[#f4a835] mb-2">TELÉFONO</h3>
-                <p className="text-2xl font-bold">+51 987 460 681</p>
-                <p className="text-slate-300">+51 924 771 712</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-[#f4a835] mb-2">UBICACIÓN</h3>
-                <p className="text-lg font-semibold">📍 Plaza de Armas, Juliaca</p>
-                <p className="text-slate-300 text-sm">Nos encuentras al frente de la Plaza de Armas, Juliaca</p>
-              </div>
-              <div className="pt-4 border-t border-slate-500">
-                <p className="text-sm text-slate-300">Disponible también en modalidad híbrida (presencial + online)</p>
-              </div>
-            </div>
-
-            {/* Bonus Info */}
-            <div className="border-2 border-[#f4a835] rounded-xl p-6 bg-[#f4a835]/5">
-              <h3 className="font-bold text-[#f4a835] mb-2">🎁 BONO POR INSCRIPCIÓN</h3>
-              <p className="text-slate-700 font-semibold">Recibe un libro físico GRATIS</p>
-              <p className="text-sm text-slate-600 mt-2">
-                Acceso exclusivo a material de referencia para reforzar lo aprendido.
-              </p>
-            </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-28 md:pt-36 relative z-10">
+        
+        {/* HERO SECTION - Centered & Massive */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-4xl mx-auto mb-16 space-y-6"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-[#1a2d5c] font-semibold text-sm tracking-wide mb-4">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f4a835] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#f4a835]"></span>
+            </span>
+            {hero.badge}
           </div>
+          
+          <h2 className="text-5xl md:text-7xl font-extrabold text-[#1a2d5c] dark:text-white leading-[1.1] tracking-tight">
+            {hero.titleLine1} <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f4a835] to-[#f7c978]">
+              {hero.titleLine2}
+            </span>
+          </h2>
+          
+          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium max-w-2xl mx-auto">
+            {hero.description}
+          </p>
+        </motion.div>
 
-          {/* Right Section - Form */}
-          <div className="lg:sticky lg:top-24">
-            <RegistrationForm onSubmitSuccess={handleSubmitSuccess} />
-          </div>
+        {/* PROGRAMS SECTION */}
+        <ProgramsSection content={content.programs} />
+
+        {/* BOOK OFFER - LIMITED TIME */}
+        <BookOffer content={content.bookOffer} />
+
+        {/* TESTIMONIALS SECTION - VOICES THAT INSPIRE */}
+        <TestimonialsSection content={content.testimonials} />
+
+        <div id="registration-form" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-12 md:mt-24">
+          
+          {/* Left Section - Info (Now 7 columns) */}
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="lg:col-span-7 space-y-6"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               {/* Contact Info Card - Glassmorphism */}
+              <motion.div 
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                className="md:col-span-2 backdrop-blur-xl bg-white/40 dark:bg-slate-900/60 border border-white/50 dark:border-white/10 rounded-3xl p-8 shadow-xl relative overflow-hidden group"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2d5c] rounded-full blur-[80px] opacity-10 dark:opacity-30" />
+
+                <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-[#1a2d5c]/5 dark:bg-white/10 rounded-2xl text-[#1a2d5c] dark:text-[#f4a835]">
+                      <Phone className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-bold text-[#f4a835] tracking-widest mb-1">ASESORÍA</h3>
+                      <p className="text-2xl font-bold text-[#1a2d5c] dark:text-white">
+                        {content.footer?.phone || "+51 987 460 681"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="h-12 w-[1px] bg-slate-200 dark:bg-slate-700 hidden md:block" />
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-[#1a2d5c]/5 dark:bg-white/10 rounded-2xl text-[#1a2d5c] dark:text-[#f4a835]">
+                      <MapPin className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-bold text-[#f4a835] tracking-widest mb-1">VISÍTANOS</h3>
+                      <p className="text-lg font-bold text-[#1a2d5c] dark:text-white">
+                        {content.footer?.address || "Plaza de Armas"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Bonus Info - Pulsing Effect */}
+              <motion.div 
+                variants={fadeInUp}
+                className="md:col-span-2 relative p-[2px] rounded-3xl bg-gradient-to-r from-[#f4a835] via-[#f8d090] to-[#f4a835] bg-[length:200%_auto] animate-gradient"
+              >
+                <div className="bg-white dark:bg-slate-900 rounded-[22px] p-6 h-full relative overflow-hidden flex items-center justify-between gap-4 transition-colors">
+                  <div>
+                    <h3 className="font-bold text-[#f4a835] mb-1 flex items-center gap-2 text-sm uppercase tracking-wide">
+                      <Gift className="w-4 h-4" />
+                      Bono Exclusivo
+                    </h3>
+                    <p className="text-[#1a2d5c] dark:text-white font-bold text-xl">Libro de Liderazgo GRATIS</p>
+                  </div>
+                  <Gift className="w-16 h-16 text-[#f4a835]/20 -rotate-12 flex-shrink-0" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Recent Registrations Live Feed */}
+            <motion.div variants={fadeInUp}>
+               <RecentRegistrations />
+            </motion.div>
+          </motion.div>
+
+          {/* Right Section - Form (Now 5 columns) */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="lg:col-span-5 lg:sticky lg:top-28"
+          >
+            <div className="relative">
+              {/* Form Glow Effect */}
+              <div className="absolute -inset-1 bg-gradient-to-b from-[#f4a835] to-[#1a2d5c] rounded-[30px] blur-lg opacity-20" />
+              <RegistrationForm onSubmitSuccess={handleSubmitSuccess} />
+            </div>
+          </motion.div>
         </div>
       </main>
+
+      <SiteFooter content={content.footer} />
 
       {/* Confirmation Modal */}
       {showConfirmation && <ConfirmationModal data={submittedData} onClose={() => setShowConfirmation(false)} />}

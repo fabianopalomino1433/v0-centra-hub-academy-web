@@ -2,7 +2,8 @@
 
 import { useState, type FormEvent, type ChangeEvent } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { motion } from "framer-motion"
+import { User, Phone, Mail, BookOpen, Monitor, Clock } from "lucide-react"
 
 interface FormData {
   fullName: string
@@ -22,7 +23,7 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
     fullName: "",
     whatsapp: "",
     email: "",
-    program: "oratoria",
+    program: "psicologia_oratoria",
     modality: "presencial",
     preferredTime: "manana",
   })
@@ -64,7 +65,7 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
         fullName: "",
         whatsapp: "",
         email: "",
-        program: "oratoria",
+        program: "psicologia_oratoria",
         modality: "presencial",
         preferredTime: "manana",
       })
@@ -75,103 +76,129 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
     }
   }
 
+  const inputClasses = "w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f4a835] focus:border-transparent transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
+  const labelClasses = "block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2"
+  const iconClasses = "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
+
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
-      <h3 className="text-2xl font-bold text-[#1a2d5c] mb-6">Formulario de Inscripción</h3>
+    <motion.form 
+      onSubmit={handleSubmit} 
+      className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 space-y-6 relative z-10"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-extrabold text-[#1a2d5c] dark:text-white">Inscripción Online</h3>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Completa tus datos para reservar tu vacante</p>
+      </div>
 
       {/* Full Name */}
-      <div>
-        <label htmlFor="fullName" className="block text-sm font-semibold text-slate-700 mb-2">
+      <div className="relative group">
+        <label htmlFor="fullName" className={labelClasses}>
           Nombre Completo
         </label>
-        <Input
-          id="fullName"
-          name="fullName"
-          type="text"
-          placeholder="Ej. Juan Pérez"
-          value={formData.fullName}
-          onChange={handleChange}
-          required
-          className="w-full"
-        />
+        <div className="relative">
+          <User className={iconClasses} />
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            placeholder="Ej. Juan Pérez"
+            value={formData.fullName}
+            onChange={handleChange}
+            required
+            className={inputClasses}
+          />
+        </div>
       </div>
 
       {/* WhatsApp */}
-      <div>
-        <label htmlFor="whatsapp" className="block text-sm font-semibold text-slate-700 mb-2">
+      <div className="relative group">
+        <label htmlFor="whatsapp" className={labelClasses}>
           WhatsApp
         </label>
-        <Input
-          id="whatsapp"
-          name="whatsapp"
-          type="tel"
-          placeholder="Ej. 999 000 000"
-          value={formData.whatsapp}
-          onChange={handleChange}
-          required
-          className="w-full"
-        />
+        <div className="relative">
+          <Phone className={iconClasses} />
+          <input
+            id="whatsapp"
+            name="whatsapp"
+            type="tel"
+            placeholder="Ej. 999 000 000"
+            value={formData.whatsapp}
+            onChange={handleChange}
+            required
+            className={inputClasses}
+          />
+        </div>
       </div>
 
       {/* Email */}
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+      <div className="relative group">
+        <label htmlFor="email" className={labelClasses}>
           Email Corporativo / Personal
         </label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Ej. juan@correo.com"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="w-full"
-        />
+        <div className="relative">
+          <Mail className={iconClasses} />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Ej. juan@correo.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className={inputClasses}
+          />
+        </div>
       </div>
 
       {/* Program Selection */}
       <div>
-        <label htmlFor="program" className="block text-sm font-semibold text-slate-700 mb-2">
-          Programa
+        <label htmlFor="program" className={labelClasses}>
+          Programa de Interés
         </label>
-        <select
-          id="program"
-          name="program"
-          value={formData.program}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f4a835] bg-white"
-        >
-          <option value="oratoria">Oratoria y Liderazgo</option>
-          <option value="lectura">Velocidad de Lectura</option>
-          <option value="expresion">Exprésate Mejor</option>
-          <option value="locucion">Locución</option>
-        </select>
+        <div className="relative">
+          <BookOpen className={iconClasses} />
+          <select
+            id="program"
+            name="program"
+            value={formData.program}
+            onChange={handleChange}
+            className={`${inputClasses} appearance-none cursor-pointer`}
+          >
+            <option value="psicologia_oratoria">Psicología de la Oratoria</option>
+            <option value="locucion_comercial">Locución Comercial</option>
+          </select>
+        </div>
       </div>
 
       {/* Modality */}
       <div>
-        <label htmlFor="modality" className="block text-sm font-semibold text-slate-700 mb-2">
+        <label htmlFor="modality" className={labelClasses}>
           Modalidad
         </label>
-        <select
-          id="modality"
-          name="modality"
-          value={formData.modality}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f4a835] bg-white"
-        >
-          <option value="presencial">Presencial (Sede Juliaca)</option>
-          <option value="hibrida">Híbrida (Presencial + Online)</option>
-        </select>
+        <div className="relative">
+          <Monitor className={iconClasses} />
+          <select
+            id="modality"
+            name="modality"
+            value={formData.modality}
+            onChange={handleChange}
+            className={`${inputClasses} appearance-none cursor-pointer`}
+          >
+            <option value="presencial">Presencial (Sede Juliaca)</option>
+            <option value="hibrida">Híbrida (Presencial + Online)</option>
+          </select>
+        </div>
       </div>
 
       {/* Preferred Time */}
       <div>
-        <label htmlFor="preferredTime" className="block text-sm font-semibold text-slate-700 mb-2">
+        <label htmlFor="preferredTime" className={labelClasses}>
           Horario Preferido
         </label>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-3 gap-2">
           {[
             { value: "manana", label: "Mañana" },
             { value: "tarde", label: "Tarde" },
@@ -181,10 +208,10 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
               key={time.value}
               type="button"
               onClick={() => setFormData((prev) => ({ ...prev, preferredTime: time.value }))}
-              className={`flex-1 py-2 px-4 rounded-lg font-semibold transition-all ${
+              className={`py-3 px-2 rounded-xl font-semibold text-sm transition-all border ${
                 formData.preferredTime === time.value
-                  ? "bg-[#f4a835] text-white"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  ? "bg-[#1a2d5c] dark:bg-[#f4a835] text-white dark:text-[#1a2d5c] border-[#1a2d5c] dark:border-[#f4a835] shadow-lg scale-105"
+                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#f4a835] hover:text-[#f4a835] dark:hover:text-[#f4a835]"
               }`}
             >
               {time.label}
@@ -194,19 +221,32 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
       </div>
 
       {/* Error Message */}
-      {error && <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">{error}</div>}
+      {error && (
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-center gap-2"
+        >
+          <span>⚠️</span> {error}
+        </motion.div>
+      )}
 
       {/* Submit Button */}
-      <Button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-[#f4a835] hover:bg-[#e59620] text-white font-bold py-3 rounded-lg transition-all"
-      >
-        {loading ? "Procesando..." : "Confirmar Reserva"}
-      </Button>
+      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-[#f4a835] to-[#e59620] hover:from-[#e59620] hover:to-[#d68b15] text-white font-bold py-6 rounded-xl shadow-lg shadow-orange-200 transition-all text-lg"
+        >
+          {loading ? "Procesando..." : "CONFIRMAR RESERVA"}
+        </Button>
+      </motion.div>
 
       {/* Security Note */}
-      <p className="text-xs text-slate-500 text-center">Tus datos están protegidos bajo estándares de seguridad SSL.</p>
-    </form>
+      <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
+        <span>🔒</span>
+        <p>Tus datos están protegidos y seguros.</p>
+      </div>
+    </motion.form>
   )
 }

@@ -1,0 +1,125 @@
+{
+  "hero": {
+    "badge": "INSCRIPCIONES ABIERTAS 2025",
+    "titleLine1": "Descubre tu voz.",
+    "titleLine2": "Lidera el futuro.",
+    "description": "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial."
+  },
+  "programs": {
+    "title": "Programas de Excelencia",
+    "subtitle": "Diseñados meticulosamente para potenciar tus habilidades blandas y directivas.",
+    "categories": [
+      {
+        "categoryTitle": "Programas de Excelencia",
+        "programs": [
+          {
+            "title": "Oratoria de Alto Impacto",
+            "description": "Domina tu presencia escénica, estructura ideas persuasivas y proyecta autoridad.",
+            "profile": "Ejecutivos y estudiantes",
+            "objective": "Seguridad escénica total",
+            "iconName": "Mic2"
+          },
+          {
+            "title": "Lectura Veloz Estratégica",
+            "description": "Triplica tu velocidad de lectura manteniendo la comprensión máxima.",
+            "profile": "Estudiantes universitarios",
+            "objective": "Eficiencia intelectual",
+            "iconName": "BookOpen"
+          },
+          {
+            "title": "Expresión & Persuasión",
+            "description": "Aprende el arte de convencer y comunicar con claridad absoluta.",
+            "profile": "Líderes de equipo",
+            "objective": "Comunicación asertiva",
+            "iconName": "MessageCircle"
+          },
+          {
+            "title": "Locución Profesional",
+            "description": "Técnica vocal, dicción perfecta, respiración y manejo del micrófono.",
+            "profile": "Futuros comunicadores",
+            "objective": "Dominio vocal profesional",
+            "iconName": "Radio"
+          },
+          {
+            "title": "Composición de Discursos",
+            "description": "Estructura mensajes poderosos que inspiren, movilicen y conecten con tu audiencia.",
+            "profile": "Escritores y oradores",
+            "objective": "Impacto narrativo",
+            "iconName": "PenTool"
+          },
+          {
+            "title": "Teatro Aplicado",
+            "description": "Utiliza técnicas actorales para potenciar tu expresión corporal y liberar emociones.",
+            "profile": "Artistas y conferencistas",
+            "objective": "Dominio escénico avanzado",
+            "iconName": "Sparkles"
+          }
+        ]
+      },
+      {
+        "categoryTitle": "Programa de Especialización",
+        "programs": [
+          {
+            "title": "Psicología de la Oratoria",
+            "description": "Entiende la mente de tu audiencia y gestiona tus propias emociones bajo presión.",
+            "profile": "Psicólogos y coaches",
+            "objective": "Inteligencia emocional",
+            "iconName": "Brain"
+          },
+          {
+            "title": "Locución Comercial",
+            "description": "Desarrolla tu voz para la publicidad, narración de marcas y doblaje.",
+            "profile": "Locutores, publicistas, actores de voz",
+            "objective": "Voz persuasiva y versátil",
+            "iconName": "Volume2"
+          }
+        ]
+      }
+    ]
+  },
+  "bookOffer": {
+    "badge": "Oferta Limitada",
+    "titleLine1": "Tu inscripción incluye nuestro",
+    "titleHighlight": "Best-Seller Físico",
+    "description": "No solo es un curso, es una biblioteca de conocimiento. Recibe \"El Arte de Hablar\", nuestro manual exclusivo de tapa dura, totalmente gratis al matricularte.",
+    "bookTitleLine1": "El Arte",
+    "bookTitleLine2": "de Hablar",
+    "bookSubtitle": "MANUAL DE LIDERAZGO",
+    "stock": 14,
+    "features": [
+      "Tapa dura con acabados en pan de oro",
+      "Más de 200 técnicas de oratoria",
+      "Guía de ejercicios prácticos incluida"
+    ]
+  },
+  "testimonials": {
+    "title": "Voces que Inspiran",
+    "items": [
+      {
+        "initial": "A",
+        "name": "Ana García",
+        "role": "Gerente de Marketing",
+        "quote": "La elegancia y profesionalismo con la que enseñan me permitió ascender en mi trabajo. La oratoria no es solo hablar, es liderar."
+      },
+      {
+        "initial": "C",
+        "name": "Carlos Mendoza",
+        "role": "Abogado",
+        "quote": "Increíble transformación. Pasé de tener pánico escénico a disfrutar cada presentación. El método es 100% efectivo."
+      },
+      {
+        "initial": "L",
+        "name": "Lucía Torres",
+        "role": "Estudiante de Medicina",
+        "quote": "La lectura veloz me ahorra horas de estudio. Una inversión que vale oro para mi carrera universitaria."
+      }
+    ]
+  },
+  "footer": {
+    "phone": "+51 987 460 681",
+    "address": "Plaza de Armas",
+    "addressLink": "https://maps.app.goo.gl/XmgfDT14wGBB4QLN8",
+    "facebook": "https://web.facebook.com/people/El-Palacio-De-La-Oratoria-Y-Liderazgo-Vivencial-Juliaca/100064620255177/?sk=about&locale=es_LA",
+    "tiktok": "https://www.tiktok.com/@palaciodelaoratoria?lang=es-419"
+  }
+}

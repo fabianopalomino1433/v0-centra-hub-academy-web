@@ -1,47 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import fs from "fs/promises"
-import path from "path"
-
-interface Registration {
-  id: string
-  timestamp: string
-  fullName: string
-  whatsapp: string
-  email: string
-  program: string
-  modality: string
-  preferredTime: string
-}
-
-const DATA_DIR = path.join(process.cwd(), "data")
-const REGISTRATIONS_FILE = path.join(DATA_DIR, "registrations.json")
-
-// Ensure data directory exists
-async function ensureDataDir() {
-  try {
-    await fs.mkdir(DATA_DIR, { recursive: true })
-  } catch (error) {
-    console.error("Error creating data directory:", error)
-  }
-}
-
-// Load registrations from JSON file
-async function loadRegistrations(): Promise<Registration[]> {
-  try {
-    await ensureDataDir()
-    const data = await fs.readFile(REGISTRATIONS_FILE, "utf-8")
-    return JSON.parse(data)
-  } catch (error) {
-    // File doesn't exist or is empty, return empty array
-    return []
-  }
-}
-
-// Save registrations to JSON file
-async function saveRegistrations(registrations: Registration[]) {
-  await ensureDataDir()
-  await fs.writeFile(REGISTRATIONS_FILE, JSON.stringify(registrations, null, 2), "utf-8")
-}
+import { loadRegistrations, saveRegistrations, type Registration } from "@/lib/db"
 
 export async function POST(request: NextRequest) {
   try {
@@ -93,7 +51,25 @@ export async function POST(request: NextRequest) {
 // GET endpoint to retrieve registrations (for admin/verification)
 export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url)
+    const isPublic = searchParams.get("public") === "true"
+    const limit = parseInt(searchParams.get("limit") || "10", 10)
+
     const registrations = await loadRegistrations()
+
+    if (isPublic) {
+      // Return only names, newest first, limited count
+      const publicRegistrations = registrations
+        .slice()
+        .reverse()
+        .slice(0, limit)
+        .map((reg) => ({ fullName: reg.fullName }))
+
+      return NextResponse.json({
+        registrations: publicRegistrations,
+      })
+    }
+
     return NextResponse.json({
       total: registrations.length,
       registrations: registrations,
