@@ -11,6 +11,13 @@ interface Registration {
 export function RecentRegistrations() {
   const [registrations, setRegistrations] = useState<Registration[]>([])
   const [loading, setLoading] = useState(true)
+  const namesToExclude = [
+    "Fredy Polar",
+    "Bailarina Cappuccina",
+    "Cappuccino Asesino",
+    "Bombardero Cocodrilo",
+    "Tung Tung Sahur",
+  ]
 
   useEffect(() => {
     const fetchRegistrations = async () => {
@@ -18,7 +25,10 @@ export function RecentRegistrations() {
         const response = await fetch("/api/registrations?public=true&limit=5")
         if (response.ok) {
           const data = await response.json()
-          setRegistrations(data.registrations)
+          const filteredRegistrations = data.registrations.filter(
+            (reg: Registration) => !namesToExclude.includes(reg.fullName),
+          )
+          setRegistrations(filteredRegistrations)
         }
       } catch (error) {
         console.error("Failed to fetch registrations", error)
@@ -28,7 +38,6 @@ export function RecentRegistrations() {
     }
 
     fetchRegistrations()
-    // Poll every 30 seconds to keep it "live"
     const interval = setInterval(fetchRegistrations, 30000)
     return () => clearInterval(interval)
   }, [])
@@ -45,7 +54,7 @@ export function RecentRegistrations() {
       className="backdrop-blur-md bg-white/60 rounded-2xl border border-white/50 shadow-xl p-6 mt-8 relative overflow-hidden group"
     >
       <div className="absolute top-0 left-0 w-1 h-full bg-[#f4a835]" />
-      
+
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold text-[#1a2d5c] flex items-center gap-2">
           <Users className="w-5 h-5 text-[#f4a835]" />

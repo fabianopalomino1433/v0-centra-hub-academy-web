@@ -11,20 +11,20 @@ import { BookOffer } from "./book-offer"
 import { TestimonialsSection } from "./testimonials-section"
 import { SiteFooter } from "./site-footer"
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { Phone, MapPin, MonitorPlay, Gift } from "lucide-react"
+import { Phone, MapPin, Gift } from "lucide-react"
 
 export function RegistrationPage({ initialContent }: { initialContent?: any }) {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [submittedData, setSubmittedData] = useState<any>(null)
-  
+
   // Use content or fallback to defaults (although defaults are now in JSON, this is safety)
   const content = initialContent || {}
   const hero = content.hero || {
     badge: "INSCRIPCIONES ABIERTAS 2025",
     titleLine1: "Descubre tu voz.",
     titleLine2: "Lidera el futuro.",
-    description: "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial."
+    description:
+      "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial.",
   }
 
   const handleSubmitSuccess = (data: any) => {
@@ -50,9 +50,8 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-28 md:pt-36 relative z-10">
-        
         {/* HERO SECTION - Centered & Massive */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -65,14 +64,14 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
             </span>
             {hero.badge}
           </div>
-          
+
           <h2 className="text-5xl md:text-7xl font-extrabold text-[#1a2d5c] dark:text-white leading-[1.1] tracking-tight">
-            {hero.titleLine1} <br className="hidden md:block"/>
+            {hero.titleLine1} <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f4a835] to-[#f7c978]">
               {hero.titleLine2}
             </span>
           </h2>
-          
+
           <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium max-w-2xl mx-auto">
             {hero.description}
           </p>
@@ -88,17 +87,11 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
         <TestimonialsSection content={content.testimonials} />
 
         <div id="registration-form" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-12 md:mt-24">
-          
           {/* Left Section - Info (Now 7 columns) */}
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="lg:col-span-7 space-y-6"
-          >
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="lg:col-span-7 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               {/* Contact Info Card - Glassmorphism */}
-              <motion.div 
+              {/* Contact Info Card - Glassmorphism */}
+              <motion.div
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 className="md:col-span-2 backdrop-blur-xl bg-white/40 dark:bg-slate-900/60 border border-white/50 dark:border-white/10 rounded-3xl p-8 shadow-xl relative overflow-hidden group"
@@ -112,9 +105,14 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
                     </div>
                     <div>
                       <h3 className="text-xs font-bold text-[#f4a835] tracking-widest mb-1">ASESORÍA</h3>
-                      <p className="text-2xl font-bold text-[#1a2d5c] dark:text-white">
+                      <a
+                        href="https://wa.me/51987460681"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-2xl font-bold text-[#1a2d5c] dark:text-white hover:text-[#f4a835] transition-colors"
+                      >
                         {content.footer?.phone || "+51 987 460 681"}
-                      </p>
+                      </a>
                     </div>
                   </div>
                   <div className="h-12 w-[1px] bg-slate-200 dark:bg-slate-700 hidden md:block" />
@@ -124,16 +122,21 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
                     </div>
                     <div>
                       <h3 className="text-xs font-bold text-[#f4a835] tracking-widest mb-1">VISÍTANOS</h3>
-                      <p className="text-lg font-bold text-[#1a2d5c] dark:text-white">
+                      <a
+                        href="https://www.google.com/maps/place/Plaza+de+Armas+-+Juliaca/@-15.4929455,-70.1352598,3a,75y,337.55h,72.23t/data=!3m7!1e1!3m5!1ssgXyi-gXBr7Y3vgeExA-7w!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D17.769999999999996%26panoid%3DsgXyi-gXBr7Y3vgeExA-7w%26yaw%3D337.55!7i16384!8i8192!4m7!3m6!1s0x9167f3e66e70ca1d:0x164e7ab7b581f735!8m2!3d-15.4932763!4d-70.1356266!10e5!16s%2Fg%2F11gzwqb0v?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-bold text-[#1a2d5c] dark:text-white hover:text-[#f4a835] transition-colors"
+                      >
                         {content.footer?.address || "Plaza de Armas"}
-                      </p>
+                      </a>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
               {/* Bonus Info - Pulsing Effect */}
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="md:col-span-2 relative p-[2px] rounded-3xl bg-gradient-to-r from-[#f4a835] via-[#f8d090] to-[#f4a835] bg-[length:200%_auto] animate-gradient"
               >
@@ -152,12 +155,12 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
 
             {/* Recent Registrations Live Feed */}
             <motion.div variants={fadeInUp}>
-               <RecentRegistrations />
+              <RecentRegistrations />
             </motion.div>
           </motion.div>
 
           {/* Right Section - Form (Now 5 columns) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
