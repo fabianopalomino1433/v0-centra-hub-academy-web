@@ -98,4 +98,3 @@ export function SiteFooter({ content }: { content?: any }) {
     </footer>
   )
 }
-

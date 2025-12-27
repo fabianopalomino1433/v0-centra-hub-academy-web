@@ -119,4 +119,3 @@ export function ProgramsSection({ content }: { content?: any }) {
     </section>
   )
 }
-

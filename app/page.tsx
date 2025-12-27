@@ -11,4 +11,3 @@ export default async function Home() {
   const content = await loadContent()
   return <RegistrationPage initialContent={content} />
 }
-
