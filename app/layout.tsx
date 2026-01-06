@@ -13,21 +13,8 @@ export const metadata: Metadata = {
     "Talleres de oratoria, liderazgo y comunicación en Juliaca. Inscríbete hoy y recibe un libro físico gratis.",
   generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: "/icon.png", // Explicitly point to the new icon.png
+    apple: "/apple-icon.png", // Keep the apple touch icon
   },
 }
 

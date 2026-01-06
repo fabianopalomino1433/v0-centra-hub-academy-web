@@ -7,32 +7,13 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Download, LogOut, Save, RotateCcw, Edit, Trash2 } from "lucide-react"
-import { EditRegistrationModal } from "@/components/edit-registration-modal"
-import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog"
-
-interface Registration {
-  id: string
-  timestamp: string
-  fullName: string
-  whatsapp: string
-  email: string
-  program: string
-  modality: string
-  preferredTime: string
-}
+import { ArrowLeft, LogOut, Save } from "lucide-react"
 
 export default function AdminPage() {
   const router = useRouter()
-  const [registrations, setRegistrations] = useState<Registration[]>([])
   const [content, setContent] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-
-  // State for modals
-  const [isEditModalOpen, setEditModalOpen] = useState(false)
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
-  const [selectedRegistration, setSelectedRegistration] = useState<Registration | null>(null)
 
   // JSON Text States for complex fields
   const [testimonialsJson, setTestimonialsJson] = useState("")
@@ -45,20 +26,8 @@ export default function AdminPage() {
       return
     }
 
-    Promise.all([fetchRegistrations(), fetchContent()]).finally(() => setLoading(false))
+    fetchContent().finally(() => setLoading(false))
   }, [router])
-
-  const fetchRegistrations = async () => {
-    try {
-      const response = await fetch("/api/registrations")
-      const data = await response.json()
-      if (data.registrations) {
-        setRegistrations(data.registrations.reverse()) // Newest first
-      }
-    } catch (error) {
-      console.error("Error fetching registrations:", error)
-    }
-  }
 
   const fetchContent = async () => {
     try {
@@ -76,27 +45,6 @@ export default function AdminPage() {
     localStorage.removeItem("admin_authenticated")
     router.push("/")
   }
-
-  const exportToXLSX = async () => {
-    try {
-      const response = await fetch('/api/registrations/download');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Inscripciones_Centrajuv_${new Date().toISOString().split('T')[0]}.xlsx`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error exporting to XLSX:", error);
-      alert("Error al exportar el archivo XLSX.");
-    }
-  };
 
   const handleSaveContent = async () => {
     setSaving(true)
@@ -150,59 +98,6 @@ export default function AdminPage() {
     }))
   }
 
-  // Modal and CRUD handlers
-  const handleEdit = (registration: Registration) => {
-    setSelectedRegistration(registration)
-    setEditModalOpen(true)
-  }
-
-  const handleDelete = (registration: Registration) => {
-    setSelectedRegistration(registration)
-    setDeleteModalOpen(true)
-  }
-
-  const handleSaveRegistration = async (updatedRegistration: Registration) => {
-    try {
-      const response = await fetch(`/api/registrations`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedRegistration),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to update registration');
-      }
-
-      await fetchRegistrations(); // Refresh data
-      setEditModalOpen(false);
-      alert('Inscripción actualizada correctamente.');
-    } catch (error) {
-      console.error('Error updating registration:', error);
-      alert('Error al actualizar la inscripción.');
-    }
-  };
-
-  const confirmDelete = async () => {
-    if (!selectedRegistration) return;
-    try {
-      const response = await fetch(`/api/registrations?id=${selectedRegistration.id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete registration');
-      }
-
-      await fetchRegistrations(); // Refresh data
-      setDeleteModalOpen(false);
-      alert('Inscripción eliminada correctamente.');
-    } catch (error) {
-      console.error('Error deleting registration:', error);
-      alert('Error al eliminar la inscripción.');
-    }
-  };
-
-
   if (loading || !content) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
@@ -219,7 +114,7 @@ export default function AdminPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
               <h1 className="text-3xl font-extrabold text-[#1a2d5c] dark:text-white">Panel Administrativo</h1>
-              <p className="text-slate-500 dark:text-slate-400">Gestiona las inscripciones y el contenido del sitio.</p>
+              <p className="text-slate-500 dark:text-slate-400">Gestiona el contenido del sitio.</p>
             </div>
             <div className="flex items-center gap-3">
               <Button variant="outline" onClick={() => router.push("/")} className="gap-2">
@@ -231,79 +126,10 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <Tabs defaultValue="registrations" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mb-8">
-              <TabsTrigger value="registrations">Inscripciones</TabsTrigger>
+          <Tabs defaultValue="content" className="w-full">
+            <TabsList className="grid w-full grid-cols-1 max-w-md mb-8">
               <TabsTrigger value="content">Editar Contenido</TabsTrigger>
             </TabsList>
-
-            <TabsContent value="registrations">
-              <div className="flex justify-end mb-4">
-                <Button onClick={exportToXLSX} className="bg-[#107c41] hover:bg-[#0c5e31] text-white gap-2">
-                  <Download className="w-4 h-4" /> Exportar a XLSX
-                </Button>
-              </div>
-              <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm text-left">
-                    <thead className="text-xs uppercase bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-semibold">
-                      <tr>
-                        <th className="px-6 py-4">Fecha</th>
-                        <th className="px-6 py-4">Nombre</th>
-                        <th className="px-6 py-4">Contacto</th>
-                        <th className="px-6 py-4">Interés</th>
-                        <th className="px-6 py-4">Detalles</th>
-                        <th className="px-6 py-4 text-center">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                      {registrations.length === 0 ? (
-                        <tr>
-                          <td colSpan={6} className="px-6 py-8 text-center text-slate-500">
-                            No hay inscripciones registradas aún.
-                          </td>
-                        </tr>
-                      ) : (
-                        registrations.map((reg) => (
-                          <tr key={reg.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                            <td className="px-6 py-4 font-medium text-slate-500 dark:text-slate-400">
-                              {new Date(reg.timestamp).toLocaleDateString()}
-                            </td>
-                            <td className="px-6 py-4 font-bold text-[#1a2d5c] dark:text-white">
-                              {reg.fullName}
-                            </td>
-                            <td className="px-6 py-4">
-                              <div className="flex flex-col">
-                                <span className="text-slate-600 dark:text-slate-300 font-mono text-xs">{reg.whatsapp}</span>
-                                <span className="text-slate-400 text-xs">{reg.email}</span>
-                              </div>
-                            </td>
-                            <td className="px-6 py-4">
-                              <span className="px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold capitalize">
-                                {reg.program.replace(/_/g, ' ')}
-                              </span>
-                            </td>
-                            <td className="px-6 py-4 text-xs text-slate-500">
-                              <span className="capitalize">{reg.modality}</span> • <span className="capitalize">{reg.preferredTime}</span>
-                            </td>
-                            <td className="px-6 py-4 text-center">
-                              <div className="flex items-center justify-center gap-2">
-                                <Button variant="outline" size="sm" onClick={() => handleEdit(reg)} className="gap-1">
-                                  <Edit className="w-3 h-3" /> Editar
-                                </Button>
-                                <Button variant="destructive" size="sm" onClick={() => handleDelete(reg)} className="gap-1">
-                                  <Trash2 className="w-3 h-3" /> Eliminar
-                                </Button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </TabsContent>
 
             <TabsContent value="content">
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -447,23 +273,6 @@ export default function AdminPage() {
           </Tabs>
         </div>
       </div>
-
-      {/* Modals */}
-      <EditRegistrationModal
-        isOpen={isEditModalOpen}
-        onClose={() => setEditModalOpen(false)}
-        registration={selectedRegistration}
-        onSave={handleSaveRegistration}
-      />
-      {selectedRegistration && (
-        <DeleteConfirmationDialog
-          isOpen={isDeleteModalOpen}
-          onClose={() => setDeleteModalOpen(false)}
-          onConfirm={confirmDelete}
-          title="Confirmar Eliminación"
-          description={`¿Estás seguro de que quieres eliminar la inscripción de "${selectedRegistration.fullName}"? Esta acción es irreversible.`}
-        />
-      )}
     </>
   )
 }

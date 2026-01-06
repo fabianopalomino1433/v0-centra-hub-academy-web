@@ -1,24 +1,18 @@
 "use client"
 
-import { useState } from "react"
-import { RegistrationForm } from "./registration-form"
-import { ConfirmationModal } from "./confirmation-modal"
-import { RecentRegistrations } from "./recent-registrations"
 import { AnimatedBackground } from "./animated-background"
 import { ScrollyHeader } from "./scrolly-header"
 import { ProgramsSection } from "./programs-section"
 import { BookOffer } from "./book-offer"
 import { TestimonialsSection } from "./testimonials-section"
 import { SchedulesSection } from "./schedules-section"
+import { NegotiablePriceSection } from "./negotiable-price-section"
 import { SiteFooter } from "./site-footer"
 import { motion } from "framer-motion"
 import { Phone, MapPin, Gift } from "lucide-react"
+import { StaticConfirmation } from "./static-confirmation"
 
 export function RegistrationPage({ initialContent }: { initialContent?: any }) {
-  const [showConfirmation, setShowConfirmation] = useState(false)
-  const [submittedData, setSubmittedData] = useState<any>(null)
-
-  // Use content or fallback to defaults (although defaults are now in JSON, this is safety)
   const content = initialContent || {}
   const hero = content.hero || {
     badge: "INSCRIPCIONES ABIERTAS 2025",
@@ -26,11 +20,6 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
     titleLine2: "Lidera el futuro.",
     description:
       "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial.",
-  }
-
-  const handleSubmitSuccess = (data: any) => {
-    setSubmittedData(data)
-    setShowConfirmation(true)
   }
 
   const fadeInUp = {
@@ -90,7 +79,7 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
         {/* SCHEDULES SECTION - HORARIOS DISPONIBLES */}
         <SchedulesSection content={content.schedules} />
 
-        <div id="registration-form" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-12 md:mt-24">
+        <div id="registration-section" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-12 md:mt-24">
           {/* Left Section - Info (Now 7 columns) */}
           <motion.div initial="hidden" animate="visible" variants={stagger} className="lg:col-span-7 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -156,14 +145,9 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
                 </div>
               </motion.div>
             </div>
-
-            {/* Recent Registrations Live Feed */}
-            <motion.div variants={fadeInUp}>
-              <RecentRegistrations />
-            </motion.div>
           </motion.div>
 
-          {/* Right Section - Form (Now 5 columns) */}
+          {/* Right Section - Static Confirmation */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -173,16 +157,17 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
             <div className="relative">
               {/* Form Glow Effect */}
               <div className="absolute -inset-1 bg-gradient-to-b from-[#f4a835] to-[#1a2d5c] rounded-[30px] blur-lg opacity-20" />
-              <RegistrationForm onSubmitSuccess={handleSubmitSuccess} programs={content.programs.categories[0].programs} />
+              <StaticConfirmation />
             </div>
           </motion.div>
         </div>
       </main>
 
+      {/* NEGOTIABLE PRICE SECTION */}
+      <NegotiablePriceSection />
+
       <SiteFooter content={content.footer} />
 
-      {/* Confirmation Modal */}
-      {showConfirmation && <ConfirmationModal data={submittedData} onClose={() => setShowConfirmation(false)} />}
     </div>
   )
 }
