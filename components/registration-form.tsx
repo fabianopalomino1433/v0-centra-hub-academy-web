@@ -16,14 +16,15 @@ interface FormData {
 
 interface RegistrationFormProps {
   onSubmitSuccess: (data: FormData) => void
+  programs: { title: string; description: string; profile: string; objective: string; iconName: string }[]
 }
 
-export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
+export function RegistrationForm({ onSubmitSuccess, programs }: RegistrationFormProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     whatsapp: "",
     email: "",
-    program: "psicologia_oratoria",
+    program: programs.length > 0 ? programs[0].title.toLowerCase().replace(/\s/g, '_') : "",
     modality: "presencial",
     preferredTime: "manana",
   })
@@ -65,7 +66,7 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
         fullName: "",
         whatsapp: "",
         email: "",
-        program: "psicologia_oratoria",
+        program: programs.length > 0 ? programs[0].title.toLowerCase().replace(/\s/g, '_') : "",
         modality: "presencial",
         preferredTime: "manana",
       })
@@ -167,8 +168,11 @@ export function RegistrationForm({ onSubmitSuccess }: RegistrationFormProps) {
             onChange={handleChange}
             className={`${inputClasses} appearance-none cursor-pointer`}
           >
-            <option value="psicologia_oratoria">Psicología de la Oratoria</option>
-            <option value="locucion_comercial">Locución Comercial</option>
+            {programs.map((program) => (
+              <option key={program.title} value={program.title.toLowerCase().replace(/\s/g, '_')}>
+                {program.title}
+              </option>
+            ))}
           </select>
         </div>
       </div>

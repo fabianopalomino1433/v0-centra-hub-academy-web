@@ -9,6 +9,7 @@ import { ScrollyHeader } from "./scrolly-header"
 import { ProgramsSection } from "./programs-section"
 import { BookOffer } from "./book-offer"
 import { TestimonialsSection } from "./testimonials-section"
+import { SchedulesSection } from "./schedules-section"
 import { SiteFooter } from "./site-footer"
 import { motion } from "framer-motion"
 import { Phone, MapPin, Gift } from "lucide-react"
@@ -85,6 +86,9 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
 
         {/* TESTIMONIALS SECTION - VOICES THAT INSPIRE */}
         <TestimonialsSection content={content.testimonials} />
+
+        {/* SCHEDULES SECTION - HORARIOS DISPONIBLES */}
+        <SchedulesSection content={content.schedules} />
 
         <div id="registration-form" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-12 md:mt-24">
           {/* Left Section - Info (Now 7 columns) */}
@@ -169,7 +173,7 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
             <div className="relative">
               {/* Form Glow Effect */}
               <div className="absolute -inset-1 bg-gradient-to-b from-[#f4a835] to-[#1a2d5c] rounded-[30px] blur-lg opacity-20" />
-              <RegistrationForm onSubmitSuccess={handleSubmitSuccess} />
+              <RegistrationForm onSubmitSuccess={handleSubmitSuccess} programs={content.programs.categories[0].programs} />
             </div>
           </motion.div>
         </div>

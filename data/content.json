@@ -13,65 +13,60 @@
         "categoryTitle": "Programas de Excelencia",
         "programs": [
           {
-            "title": "Oratoria de Alto Impacto",
-            "description": "Domina tu presencia escénica, estructura ideas persuasivas y proyecta autoridad.",
-            "profile": "Ejecutivos y estudiantes",
-            "objective": "Seguridad escénica total",
-            "iconName": "Mic2"
+            "title": "Ingeniería de la Oratoria Científica",
+            "description": "Metodología avanzada para la sustentación exitosa de tesis y tesinas ante jurados exigentes.",
+            "profile": "Tesistas y Académicos",
+            "objective": "Sustentación impecable",
+            "iconName": "GraduationCap"
           },
           {
-            "title": "Lectura Veloz Estratégica",
-            "description": "Triplica tu velocidad de lectura manteniendo la comprensión máxima.",
-            "profile": "Estudiantes universitarios",
-            "objective": "Eficiencia intelectual",
-            "iconName": "BookOpen"
-          },
-          {
-            "title": "Expresión & Persuasión",
-            "description": "Aprende el arte de convencer y comunicar con claridad absoluta.",
-            "profile": "Líderes de equipo",
-            "objective": "Comunicación asertiva",
-            "iconName": "MessageCircle"
-          },
-          {
-            "title": "Locución Profesional",
-            "description": "Técnica vocal, dicción perfecta, respiración y manejo del micrófono.",
-            "profile": "Futuros comunicadores",
-            "objective": "Dominio vocal profesional",
-            "iconName": "Radio"
-          },
-          {
-            "title": "Composición de Discursos",
-            "description": "Estructura mensajes poderosos que inspiren, movilicen y conecten con tu audiencia.",
-            "profile": "Escritores y oradores",
-            "objective": "Impacto narrativo",
-            "iconName": "PenTool"
-          },
-          {
-            "title": "Teatro Aplicado",
-            "description": "Utiliza técnicas actorales para potenciar tu expresión corporal y liberar emociones.",
-            "profile": "Artistas y conferencistas",
-            "objective": "Dominio escénico avanzado",
-            "iconName": "Sparkles"
-          }
-        ]
-      },
-      {
-        "categoryTitle": "Programa de Especialización",
-        "programs": [
-          {
-            "title": "Psicología de la Oratoria",
-            "description": "Entiende la mente de tu audiencia y gestiona tus propias emociones bajo presión.",
-            "profile": "Psicólogos y coaches",
-            "objective": "Inteligencia emocional",
+            "title": "Psicología del Miedo Escénico",
+            "description": "Herramientas de neurociencia y autocontrol emocional para transformar los nervios en energía positiva.",
+            "profile": "Público en general",
+            "objective": "Dominio emocional",
             "iconName": "Brain"
           },
           {
-            "title": "Locución Comercial",
-            "description": "Desarrolla tu voz para la publicidad, narración de marcas y doblaje.",
-            "profile": "Locutores, publicistas, actores de voz",
-            "objective": "Voz persuasiva y versátil",
+            "title": "Presentación y Etiqueta Personal",
+            "description": "Construcción de una imagen profesional coherente que proyecte autoridad, respeto y confianza.",
+            "profile": "Profesionales y Líderes",
+            "objective": "Impacto visual profesional",
+            "iconName": "UserCheck"
+          },
+          {
+            "title": "Educación de la Voz y Lenguaje Corporal",
+            "description": "Técnicas de dicción, proyección vocal y gesticulación no verbal para una comunicación 360°.",
+            "profile": "Expositores y Conferencistas",
+            "objective": "Elocuencia física y vocal",
             "iconName": "Volume2"
+          },
+          {
+            "title": "Oratoria Forense y Litigación Oral",
+            "description": "Estrategias de argumentación jurídica combinadas con lectura veloz para el análisis de expedientes.",
+            "profile": "Abogados y Estudiantes de Derecho",
+            "objective": "Persuasión en estrados",
+            "iconName": "Gavel"
+          },
+          {
+            "title": "El Poder de las Palabras",
+            "description": "Storytelling y técnicas de persuasión para conectar emocionalmente e inspirar a grandes audiencias.",
+            "profile": "Emprendedores y Directivos",
+            "objective": "Conexión e inspiración",
+            "iconName": "Zap"
+          },
+          {
+            "title": "Discursos y Poesías",
+            "description": "El arte de la retórica y la declamación para eventos solemnes, sociales y culturales.",
+            "profile": "Oradores y Artistas",
+            "objective": "Maestría en elocuencia",
+            "iconName": "Scroll"
+          },
+          {
+            "title": "Teatro y Canto",
+            "description": "Expresión artística integral para mejorar la presencia, la interpretación y el ritmo escénico.",
+            "profile": "Estudiantes de artes y entusiastas",
+            "objective": "Desenvolvimiento escénico",
+            "iconName": "Music"
           }
         ]
       }
@@ -112,6 +107,41 @@
         "name": "Lucía Torres",
         "role": "Estudiante de Medicina",
         "quote": "La lectura veloz me ahorra horas de estudio. Una inversión que vale oro para mi carrera universitaria."
+      }
+    ]
+  },
+  "schedules": {
+    "title": "Horarios Disponibles",
+    "items": [
+      {
+        "category": "NIÑOS",
+        "times": [
+          "MAÑANAS: 07:30 A 09:00",
+          "09:00 A 10:30",
+          "10:30 A 12:00",
+          "TARDES: 02:00 A 03:30",
+          "03:30 A 05:00",
+          "SÁBADO - DOMINGOS: 09:00 A 11:00 a.m.",
+          "02:00 A 04:00 p.m."
+        ]
+      },
+      {
+        "category": "JÓVENES",
+        "times": [
+          "MAÑANAS: 07:30 A 09:00",
+          "09:00 A 10:30",
+          "10:30 A 12:00",
+          "TARDES: 02:00 A 03:30",
+          "03:30 A 05:00",
+          "05:00 A"
+        ]
+      },
+      {
+        "category": "PROFESIONALES",
+        "times": [
+          "NOCHE",
+          "06:30 A 08:00"
+        ]
       }
     ]
   },

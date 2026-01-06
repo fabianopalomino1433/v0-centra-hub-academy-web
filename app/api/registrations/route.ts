@@ -79,3 +79,56 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Error al recuperar registros" }, { status: 500 })
   }
 }
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { id } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: "ID de registro es requerido" }, { status: 400 });
+    }
+
+    let registrations = await loadRegistrations();
+    const registrationIndex = registrations.findIndex(reg => reg.id === id);
+
+    if (registrationIndex === -1) {
+      return NextResponse.json({ error: "Registro no encontrado" }, { status: 404 });
+    }
+
+    // Update the registration with new data
+    registrations[registrationIndex] = { ...registrations[registrationIndex], ...body };
+
+    await saveRegistrations(registrations);
+
+    return NextResponse.json({ success: true, message: "Registro actualizado exitosamente" });
+  } catch (error) {
+    console.error("Error updating registration:", error);
+    return NextResponse.json({ error: "Error al actualizar el registro" }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "ID de registro es requerido" }, { status: 400 });
+    }
+
+    let registrations = await loadRegistrations();
+    const filteredRegistrations = registrations.filter(reg => reg.id !== id);
+
+    if (registrations.length === filteredRegistrations.length) {
+      return NextResponse.json({ error: "Registro no encontrado" }, { status: 404 });
+    }
+
+    await saveRegistrations(filteredRegistrations);
+
+    return NextResponse.json({ success: true, message: "Registro eliminado exitosamente" });
+  } catch (error) {
+    console.error("Error deleting registration:", error);
+    return NextResponse.json({ error: "Error al eliminar el registro" }, { status: 500 });
+  }
+}

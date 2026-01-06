@@ -1,60 +1,30 @@
 [
   {
-    "id": "IBR-1766641000001-aaa11",
-    "timestamp": "2025-12-25T05:10:00.000Z",
-    "fullName": "Tralalero Tralala",
-    "whatsapp": "111111111",
-    "email": "tralalero@brainrot.it",
-    "program": "italian brainrot",
-    "modality": "memetico",
-    "preferredTime": "siempre"
-  },
-  {
-    "id": "IBR-1766641000002-bbb22",
-    "timestamp": "2025-12-25T05:11:00.000Z",
-    "fullName": "Tung Tung Sahur",
-    "whatsapp": "222222222",
-    "email": "tungtung@brainrot.it",
-    "program": "italian brainrot",
-    "modality": "memetico",
-    "preferredTime": "madrugada"
-  },
-  {
-    "id": "IBR-1766641000003-ccc33",
-    "timestamp": "2025-12-25T05:12:00.000Z",
-    "fullName": "Bombardiro Cocodrilo",
-    "whatsapp": "333333333",
-    "email": "bombardiro@brainrot.it",
-    "program": "italian brainrot",
-    "modality": "memetico",
-    "preferredTime": "tarde"
-  },
-  {
-    "id": "IBR-1766641000004-ddd44",
-    "timestamp": "2025-12-25T05:13:00.000Z",
-    "fullName": "Cappuccino Asesino",
-    "whatsapp": "444444444",
-    "email": "cappuccino@brainrot.it",
-    "program": "italian brainrot",
-    "modality": "memetico",
-    "preferredTime": "noche"
-  },
-  {
-    "id": "IBR-1766641000005-eee55",
-    "timestamp": "2025-12-25T05:14:00.000Z",
-    "fullName": "Bailarina Cappuccina",
-    "whatsapp": "555555555",
-    "email": "bailarina@brainrot.it",
-    "program": "italian brainrot",
-    "modality": "memetico",
-    "preferredTime": "siempre"
-  },
-  {
     "id": "REG-1766646543236-yaikc8w1y",
     "timestamp": "2025-12-25T07:09:03.236Z",
     "fullName": "Fredy Polar",
     "whatsapp": "920711818",
     "email": "fredyurviola@gmail.com",
+    "program": "psicologia_oratoria",
+    "modality": "presencial",
+    "preferredTime": "manana"
+  },
+  {
+    "id": "REG-1767663265068-uf6kh86zo",
+    "timestamp": "2026-01-06T01:34:25.068Z",
+    "fullName": "Louis Cespedes",
+    "whatsapp": "999900999",
+    "email": "client@example.com",
+    "program": "locucion_comercial",
+    "modality": "presencial",
+    "preferredTime": "tarde"
+  },
+  {
+    "id": "REG-1767666345031-id99n9wey",
+    "timestamp": "2026-01-06T02:25:45.031Z",
+    "fullName": "Louis Cespedes",
+    "whatsapp": "999900999",
+    "email": "client@example.com",
     "program": "psicologia_oratoria",
     "modality": "presencial",
     "preferredTime": "manana"
