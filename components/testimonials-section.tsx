@@ -28,7 +28,7 @@ const defaultTestimonials = [
 
 export function TestimonialsSection({ content }: { content?: any }) {
   const testimonials = content?.items || defaultTestimonials
-  const title = content?.title || "Voces que Inspiran"
+  const title = content?.title || "Plana Docente"
 
   const handleHover = (e: React.MouseEvent<HTMLDivElement>) => {
     // Get position of the card relative to the window

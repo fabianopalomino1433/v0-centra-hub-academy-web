@@ -7,39 +7,40 @@ const defaultSchedules = {
   title: "Horarios Disponibles",
   items: [
     {
-      category: "NIÑOS",
-      times: [
-        "MAÑANAS: 07:30 A 09:00",
-        "09:00 A 10:30",
-        "10:30 A 12:00",
-        "TARDES: 02:00 A 03:30",
-        "03:30 A 05:00",
-        "SÁBADO - DOMINGOS: 09:00 A 11:00 a.m.",
-        "02:00 A 04:00 p.m."
-      ]
-    },
-    {
-      category: "JÓVENES",
-      times: [
-        "MAÑANAS: 07:30 A 09:00",
-        "09:00 A 10:30",
-        "10:30 A 12:00",
-        "TARDES: 02:00 A 03:30",
-        "03:30 A 05:00",
-        "05:00 A"
-      ]
-    },
-    {
-      category: "PROFESIONALES",
-      "times": [
-        "MAÑANAS: 07:30 A 09:00",
-        "09:00 A 10:30",
-        "10:30 A 12:00",
-        "TARDES: 02:00 A 03:30",
-        "03:30 A 05:00",
-        "05:00 A"
-      ]
-    }
+        "category": "NIÑOS",
+        "times": [
+          "MAÑANAS:",
+          "07:30 A 09:00",
+          "09:00 A 10:30",
+          "10:30 A 12:00",
+          "TARDES:",
+          "02:00 A 03:30",
+          "03:30 A 05:00",
+          "SÁBADO - DOMINGOS:",
+          "09:00 A 11:00 a.m.",
+          "02:00 A 04:00 p.m."
+        ]
+      },
+      {
+        "category": "JÓVENES",
+        "times": [
+          "MAÑANAS:",
+          "07:30 A 09:00",
+          "09:00 A 10:30",
+          "10:30 A 12:00",
+          "TARDES:",
+          "02:00 A 03:30",
+          "03:30 A 05:00",
+          "05:00 A 07:00"
+        ]
+      },
+      {
+        "category": "PROFESIONALES",
+        "times": [
+          "NOCHE",
+          "06:30 A 08:00"
+        ]
+      }
   ]
 }
 
@@ -93,14 +94,16 @@ export function SchedulesSection({ content }: { content?: any }) {
               transition={{ delay: index * 0.2 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg border-2 border-transparent hover:border-[#f4a835] hover:shadow-2xl hover:shadow-orange-200/50 transition-all duration-300 group cursor-default relative"
             >
-              <Clock className="absolute top-6 right-6 w-12 h-12 text-slate-100 dark:text-slate-800 rotate-12 -z-0 group-hover:text-[#f4a835]/10 transition-colors" />
-              <h3 className="font-bold text-2xl text-[#1a2d5c] dark:text-white mb-4 relative z-10">
+              
+              <h3 className="font-bold text-2xl text-[#1a2d5c] dark:text-white mb-4 relative z-10 flex items-center gap-2">
+                {item.category === "NIÑOS" && <span role="img" aria-label="niños">👶</span>}
+                {item.category === "JÓVENES" && <span role="img" aria-label="jóvenes">🧑‍🎓</span>}
+                {item.category === "PROFESIONALES" && <span role="img" aria-label="profesionales">💼</span>}
                 {item.category}
               </h3>
               <ul className="space-y-2 text-slate-600 dark:text-slate-300 relative z-10">
                 {item.times.map((time: string, timeIndex: number) => (
-                  <li key={timeIndex} className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#f4a835]" /> {time}
+                  <li key={timeIndex}> {time}
                   </li>
                 ))}
               </ul>
