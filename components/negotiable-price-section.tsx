@@ -21,7 +21,7 @@ export function NegotiablePriceSection() {
         </h2>
         <p className="mt-4 text-2xl text-slate-600 dark:text-slate-300 font-medium">
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f4a835] to-[#f7c978]">
-            S/270.00 mensualmente
+            S/280.00 mensualmente
           </span>{" "}
           con inclusión de todos los cursos.
         </p>
