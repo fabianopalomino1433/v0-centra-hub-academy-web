@@ -1,16 +1,16 @@
 {
   "hero": {
-    "badge": "INSCRIPCIONES ABIERTAS 2025",
+    "badge": "INSCRIPCIONES ABIERTAS 2026",
     "titleLine1": "Descubre tu voz.",
     "titleLine2": "Lidera el futuro.",
     "description": "Únete a la academia de oratoria más prestigiosa de la región. Metodología 100% práctica y certificación oficial."
   },
   "programs": {
-    "title": "Programas de Excelencia",
+    "title": "Temario de Excelencia",
     "subtitle": "Diseñados meticulosamente para potenciar tus habilidades blandas y directivas.",
     "categories": [
       {
-        "categoryTitle": "Programas de Excelencia",
+        "categoryTitle": "Temario de Excelencia",
         "programs": [
           {
             "title": "Ingeniería de la Oratoria Científica",
@@ -82,13 +82,13 @@
     "bookSubtitle": "MANUAL DE LIDERAZGO",
     "stock": 14,
     "features": [
-      "Tapa dura con acabados en pan de oro",
+  
       "Más de 200 técnicas de oratoria",
       "Guía de ejercicios prácticos incluida"
     ]
   },
   "testimonials": {
-    "title": "Voces que Inspiran",
+    "title": "Plana Docente",
     "items": [
       {
         "initial": "A",
@@ -116,24 +116,29 @@
       {
         "category": "NIÑOS",
         "times": [
-          "MAÑANAS: 07:30 A 09:00",
+          "MAÑANAS:",
+          "07:30 A 09:00",
           "09:00 A 10:30",
           "10:30 A 12:00",
-          "TARDES: 02:00 A 03:30",
+          "TARDES:",
+          "02:00 A 03:30",
           "03:30 A 05:00",
-          "SÁBADO - DOMINGOS: 09:00 A 11:00 a.m.",
+          "SÁBADO - DOMINGOS:",
+          "09:00 A 11:00 a.m.",
           "02:00 A 04:00 p.m."
         ]
       },
       {
         "category": "JÓVENES",
         "times": [
-          "MAÑANAS: 07:30 A 09:00",
+          "MAÑANAS:",
+          "07:30 A 09:00",
           "09:00 A 10:30",
           "10:30 A 12:00",
-          "TARDES: 02:00 A 03:30",
+          "TARDES:",
+          "02:00 A 03:30",
           "03:30 A 05:00",
-          "05:00 A"
+          "05:00 A 07:00"
         ]
       },
       {

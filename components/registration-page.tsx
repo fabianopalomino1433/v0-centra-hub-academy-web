@@ -15,7 +15,7 @@ import { StaticConfirmation } from "./static-confirmation"
 export function RegistrationPage({ initialContent }: { initialContent?: any }) {
   const content = initialContent || {}
   const hero = content.hero || {
-    badge: "INSCRIPCIONES ABIERTAS 2025",
+    badge: "INSCRIPCIONES ABIERTAS 2026",
     titleLine1: "Descubre tu voz.",
     titleLine2: "Lidera el futuro.",
     description:

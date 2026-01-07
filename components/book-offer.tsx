@@ -18,7 +18,7 @@ export function BookOffer({ content }: { content?: any }) {
     bookSubtitle: "MANUAL DE LIDERAZGO",
     stock: 14,
     features: [
-      "Tapa dura con acabados en pan de oro",
+  
       "Más de 200 técnicas de oratoria",
       "Guía de ejercicios prácticos incluida"
     ]
@@ -198,12 +198,17 @@ export function BookOffer({ content }: { content?: any }) {
               ))}
             </ul>
 
-            <Button 
-              onClick={scrollToForm}
-              className="w-full bg-[#f4a835] hover:bg-[#d68b15] text-[#1a2d5c] font-extrabold text-lg py-6 rounded-xl shadow-[0_0_20px_rgba(244,168,53,0.4)] hover:shadow-[0_0_30px_rgba(244,168,53,0.6)] transition-all transform hover:-translate-y-1"
+            <a 
+              href="https://api.whatsapp.com/send/?phone=51987460681&text=Hola%21+Me+gustar%C3%ADa+tener+m%C3%A1s+informaci%C3%B3n+sobre+el+programa+de+Oratoria+y+Liderazgo.&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              ¡QUIERO MI LIBRO GRATIS!
-            </Button>
+              <Button 
+                className="w-full bg-[#f4a835] hover:bg-[#d68b15] text-[#1a2d5c] font-extrabold text-lg py-6 rounded-xl shadow-[0_0_20px_rgba(244,168,53,0.4)] hover:shadow-[0_0_30px_rgba(244,168,53,0.6)] transition-all transform hover:-translate-y-1"
+              >
+                ¡QUIERO MI LIBRO GRATIS!
+              </Button>
+            </a>
             
             <p className="text-center text-xs text-slate-400">
               *Oferta válida solo para las primeras 20 matrículas del día.
