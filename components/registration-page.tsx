@@ -4,7 +4,6 @@ import { AnimatedBackground } from "./animated-background"
 import { ScrollyHeader } from "./scrolly-header"
 import { ProgramsSection } from "./programs-section"
 import { BookOffer } from "./book-offer"
-import { TestimonialsSection } from "./testimonials-section"
 import { SchedulesSection } from "./schedules-section"
 import { NegotiablePriceSection } from "./negotiable-price-section"
 import { SiteFooter } from "./site-footer"
@@ -69,12 +68,6 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
 
         {/* PROGRAMS SECTION */}
         <ProgramsSection content={content.programs} />
-
-        {/* BOOK OFFER - LIMITED TIME */}
-        <BookOffer content={content.bookOffer} />
-
-        {/* TESTIMONIALS SECTION - VOICES THAT INSPIRE */}
-        <TestimonialsSection content={content.testimonials} />
 
         {/* SCHEDULES SECTION - HORARIOS DISPONIBLES */}
         <SchedulesSection content={content.schedules} />

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import { useTheme } from "next-themes"
-import { Sun, Moon, Lock } from "lucide-react"
+import { Sun, Moon, Lock, Menu, X } from "lucide-react"
 import { AdminLoginModal } from "./admin-login-modal"
 
 export function ScrollyHeader() {
@@ -12,6 +12,7 @@ export function ScrollyHeader() {
   const { setTheme, theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [showAdminModal, setShowAdminModal] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -31,7 +32,6 @@ export function ScrollyHeader() {
 
   const menuItems = [
     { label: "Programas", id: "programas" },
-    { label: "Testimonios", id: "testimonios" },
   ]
 
   return (
@@ -101,47 +101,66 @@ export function ScrollyHeader() {
             <Lock className="w-5 h-5" />
           </button>
 
-          {/* CTA Button with Gradient Hover */}
-          <button
-            onClick={() => scrollToSection("registration-form")}
-            className="group relative px-6 py-2.5 rounded-full overflow-hidden shadow-lg transition-transform hover:scale-105 active:scale-95"
-          >
-            <div className="absolute inset-0 bg-[#1a2d5c] transition-opacity duration-300 group-hover:opacity-0" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f4a835] via-[#f7c978] to-[#f4a835] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[length:200%_auto] animate-gradient" />
-
-            <span className="relative font-bold text-white group-hover:text-[#1a2d5c] transition-colors duration-300 flex items-center gap-2">
-              Reservar Inscripción
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4"
-              >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </span>
-          </button>
         </nav>
 
         {/* Mobile Menu Button (Hamburger) */}
         <div className="md:hidden">
           <button
-            onClick={() => scrollToSection("registration-form")}
-            className="px-4 py-2 bg-[#f4a835] text-[#1a2d5c] text-xs font-bold rounded-full"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
-            RESERVAR
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       <AdminLoginModal isOpen={showAdminModal} onClose={() => setShowAdminModal(false)} />
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-sm shadow-lg z-40"
+        >
+          <div className="flex flex-col items-center gap-4 py-8">
+            {menuItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => {
+                  scrollToSection(item.id)
+                  setIsMobileMenuOpen(false)
+                }}
+                className="text-slate-600 dark:text-slate-300 hover:text-[#1a2d5c] dark:hover:text-[#f4a835] font-medium text-lg transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="flex gap-4 mt-4">
+              {mounted && (
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-[#1a2d5c] dark:text-[#f4a835]"
+                  aria-label="Toggle Theme"
+                >
+                  {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  setShowAdminModal(true)
+                  setIsMobileMenuOpen(false)
+                }}
+                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-[#1a2d5c] dark:text-[#f4a835]"
+                aria-label="Admin Access"
+              >
+                <Lock className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </motion.header>
   )
 }
