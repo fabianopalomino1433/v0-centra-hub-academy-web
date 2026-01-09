@@ -105,7 +105,7 @@ export function ProgramsSection({ content }: { content?: any }) {
 
                 {/* CTA */}
                 <a 
-                  href="https://api.whatsapp.com/send/?phone=51987460681&text=Hola%21+Me+gustar%C3%ADa+tener+m%C3%A1s+informaci%C3%B3n+sobre+el+programa+de+Oratoria+y+Liderazgo.&type=phone_number&app_absent=0"
+                  href="https://api.whatsapp.com/send/?phone=51978797369&text=Hola%21+Me+gustar%C3%ADa+tener+m%C3%A1s+informaci%C3%B3n+sobre+el+programa+de+Oratoria+y+Liderazgo.&type=phone_number&app_absent=0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full mt-auto py-3 px-4 rounded-xl bg-white dark:bg-slate-800 border-2 border-[#1a2d5c] dark:border-[#f4a835] text-[#1a2d5c] dark:text-white font-bold text-sm hover:bg-[#1a2d5c] dark:hover:bg-[#f4a835] hover:text-white dark:hover:text-[#1a2d5c] transition-all flex items-center justify-center gap-2 group/btn"

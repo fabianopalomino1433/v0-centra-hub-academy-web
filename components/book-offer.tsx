@@ -199,7 +199,7 @@ export function BookOffer({ content }: { content?: any }) {
             </ul>
 
             <a 
-              href="https://api.whatsapp.com/send/?phone=51987460681&text=Hola%21+Me+gustar%C3%ADa+tener+m%C3%A1s+informaci%C3%B3n+sobre+el+programa+de+Oratoria+y+Liderazgo.&type=phone_number&app_absent=0"
+              href="https.api.whatsapp.com/send/?phone=51978797369&text=Hola%21+Me+gustar%C3%ADa+tener+m%C3%A1s+informaci%C3%B3n+sobre+el+programa+de+Oratoria+y+Liderazgo.&type=phone_number&app_absent=0"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export function StaticConfirmation() {
-  const whatsappNumber = "+51987460681"
+  const whatsappNumber = "+51978797369"
   const defaultProgram = "Oratoria y Liderazgo"
   const defaultName = "nuestro próximo estudiante estrella"
 

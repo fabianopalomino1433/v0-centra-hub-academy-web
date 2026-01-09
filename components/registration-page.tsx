@@ -92,12 +92,12 @@ export function RegistrationPage({ initialContent }: { initialContent?: any }) {
                     <div>
                       <h3 className="text-xs font-bold text-[#f4a835] tracking-widest mb-1">ASESORÍA</h3>
                       <a
-                        href="https://wa.me/51987460681"
+                        href="https://wa.me/51978797369"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl font-bold text-[#1a2d5c] dark:text-white hover:text-[#f4a835] transition-colors"
                       >
-                        {content.footer?.phone || "+51 987 460 681"}
+                        {content.footer?.phone || "+51 978 797 369"}
                       </a>
                     </div>
                   </div>

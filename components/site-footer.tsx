@@ -6,7 +6,7 @@ export function SiteFooter({ content }: { content?: any }) {
     address: "Plaza de Armas",
     addressLink: "https://maps.app.goo.gl/XmgfDT14wGBB4QLN8",
     facebook: "https://web.facebook.com/people/El-Palacio-De-La-Oratoria-Y-Liderazgo-Vivencial-Juliaca/100064620255177/?sk=about&locale=es_LA",
-    tiktok: "https://www.tiktok.com/@palaciodelaoratoria?lang=es-419"
+    tiktok: "https://www.tiktok.com/@centrajuvoratoria?is_from_webapp=1&sender_device=pc"
   }
 
   return (
