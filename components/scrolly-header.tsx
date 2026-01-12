@@ -57,7 +57,7 @@ export function ScrollyHeader() {
         >
           <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full shadow-md border-2 border-white">
             <Image
-              src="/images/480327209-8927883004000304-8534569882409152595-n.jpg"
+              src="/images/IMG_0916.JPEG"
               alt="Logo"
               fill
               className="object-cover"
